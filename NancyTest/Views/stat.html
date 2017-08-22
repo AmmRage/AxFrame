@@ -1,0 +1,56 @@
+<html>
+<head>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+        }
+        th {
+            text-align: left;
+            font-size: 15px;
+        }
+        tr {
+            text-align: left;
+            font-size: 10px;
+        }
+    </style>
+    <title>@Model.Title</title>
+</head>
+
+<body style="background-color: lightgrey;">
+    <div class="maintable">
+        <table style="width: 90%" align="center">
+            <tr>
+                <th colspan="6">{0}</th>
+            </tr>
+            <tr>
+                <th>File No.</th>
+                <th>JobName</th>
+                <th>Filename</th>
+                <th>Status</th>
+                <th>Time</th>
+                <th>Remark</th>
+            </tr>
+            @Each.Model.ProcessInfos
+        <tr>
+            <th>@Current.FileNumber</th>
+            <th>@Current.JobName</th>
+            <th>@Current.Filename</th>
+            <th>@Current.Status</th>
+            <th>@Current.ProcessTime</th>
+            <th>@Current.Remark</th>
+        </tr>
+            @EndEach
+        </table>
+    </div>
+    <footer>
+        <a href=".\@Model.PrevDayStat" style="padding-right: 5%; position: absolute; left: 5%; padding: 10px;">@Model.PrevDayStat</a>
+
+        <a href=".\@Model.NextDayStat" style="padding-right: 5%; position: absolute; right: 5%; padding: 10px;">@Model.NextDayStat</a>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,7 @@
+MakeCert /n "CN=axframe" /r /h 0 /e 12/31/2039 /sv axframe.pvk axframe.cer
+
+
+pwd:axframe
+
+
+PVK2PFX –pvk axframe.pvk –spc axframe.cer –pfx axframe.pfx –po axframe

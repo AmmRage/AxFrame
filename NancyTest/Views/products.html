@@ -1,0 +1,22 @@
+<html>
+
+<head>
+    <title>@Model.Title</title>
+</head>
+
+<body>
+<p>products</p>
+<p>@Model.Line1</p>
+<p>@Model.Line2</p>
+
+<table style="width: 90%" align="center">
+    @Each.Model.Users
+    <tr>
+        <th>Hello @Current.Name!</th>
+    </tr>
+    @EndEach
+</table>
+
+</body>
+
+</html>
