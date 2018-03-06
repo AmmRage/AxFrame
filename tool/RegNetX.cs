@@ -11,12 +11,16 @@ namespace RegNetX
     {
         static void Main(string[] args)
         {
+            if (args.Length != 2)
+                return;
 
-	    string DLL = Environment.SystemDirectory + "\\MyActiveX.dll";
+            string option = args[0];
+            string DLL = args[1];
 
- 	    Console.WriteLine("Usage: RegNetX [-u]");
- 	    Console.WriteLine("    Will register " + DLL);
- 	    Console.WriteLine("   -u unregisters it");
+            Console.WriteLine("Usage:");
+            Console.WriteLine("RegNetX [install | uninstall] [DllFullname]");
+
+            Console.WriteLine(DLL);
 
             // This is the location of the .Net Framework Registry Key
             string framworkRegPath = @"Software\Microsoft\.NetFramework";
@@ -39,20 +43,24 @@ namespace RegNetX
             if (path == null)
                 path = installRoot + version;
 
+            Console.WriteLine("Work Dir: " + path);
+
             try
             {
                 Process regAsm = new Process();
-                regAsm.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                //regAsm.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 regAsm.StartInfo.CreateNoWindow = true;
                 regAsm.StartInfo.WorkingDirectory = path;
                 regAsm.StartInfo.FileName = "regasm.exe";
-                if (args.Length == 0)
-                  regAsm.StartInfo.Arguments = "/silent /codebase " + DLL;
+                if (option == "install")
+                    regAsm.StartInfo.Arguments = "/codebase " + DLL;
+                else if (option == "uninstall")
+                    regAsm.StartInfo.Arguments = "/unregister " + DLL;
                 else
-                  regAsm.StartInfo.Arguments = "/unregister " + DLL;
- 		
-		Console.WriteLine(path + "regasm.exe " + regAsm.StartInfo.Arguments );
+                    return;
+                Console.WriteLine(path + "regasm.exe " + regAsm.StartInfo.Arguments);
                 regAsm.Start();
+                regAsm.WaitForExit();
             }
             catch
             {

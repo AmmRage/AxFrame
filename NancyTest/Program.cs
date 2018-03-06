@@ -22,8 +22,8 @@ namespace NancyTest
             //BasicDemo.EnableOptionalRoute();
             using (var host = new NancyHost(new Uri(uri)))
             {
-                host.Start();                
-                //
+                host.Start();
+            http://www.huya.com/1548055170
                 //Process.Start(new ProcessStartInfo(uri + "/4396"));
                 //Process.Start(new ProcessStartInfo(uri));
                 
